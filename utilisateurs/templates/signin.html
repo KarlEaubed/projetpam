@@ -1,0 +1,50 @@
+{% block content %}
+{% load static %}
+{% load socialaccount %}
+
+{% for message in messages %}
+  <strong>{{ message }}</strong><br>
+{% endfor %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title> Login | .WebPam </title>
+    <link rel="stylesheet" href="{% static 'css/signin.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <div class="container">
+      <form method="post" action="/signin">
+        {% csrf_token %}
+        <div class="title">Login</div>
+        <div class="input-box underline">
+            <input type="text" name="email_username" placeholder="Enter Your Email or Your Username" required>
+            <div class="underline"></div>
+        </div>
+        <div class="input-box">
+            <input type="password" name="password" placeholder="Enter Your Password" required>
+            <div class="underline"></div>
+        </div>
+        <div class="input-box button">
+            <input type="submit" name="submit" value="Continue">
+        </div>
+    </form>    
+      <div class="option">If you don't have an Account <a href="/signup">signup</a> or Connect With Social Media</div>
+        <div class="google">
+          <a href="#">
+              <i class="fab fa-google"></i>Sign in With Google
+          </a>
+        </div>      
+        <div class="facebook">
+          <a href="#">
+            <i class="fab fa-facebook-f"></i>Sign in With Facebook
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+{% endblock %}
