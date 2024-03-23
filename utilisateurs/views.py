@@ -12,9 +12,6 @@ from django.template.loader import render_to_string
 from . tokens import generateToken
 from datetime import datetime
 from sitewebpam.models import Info_utilisateurs, Sitewebpam
-import whois # pip install python-whois
-from django.http import JsonResponse
-
 
 def home(request):
     return render(request, 'index.html')
@@ -213,39 +210,28 @@ def setup_account(request):
 
         # Vérifier si le domaine est valide
         if domaine:
-            try:
-                # Interroger les informations WHOIS du domaine
-                info_domaine = whois.whois(domaine)
-                if info_domaine:
-                    user_info = User_Main.objects.get(username=request.user.username)
-                    # Créer une instance de Info_utilisateurs avec les données du formulaire
-                    user = Info_utilisateurs.objects.create(
-                        id_user=user_info,
-                        adresse=adresse,
-                        ville=ville,
-                        state=state,
-                        zip_code=zip_code,
-                        country=country,
-                    )
-                    user.save()
+            user_info = User_Main.objects.get(username=request.user.username)
+            # Créer une instance de Info_utilisateurs avec les données du formulaire
+            user = Info_utilisateurs.objects.create(
+                id_user=user_info,
+                adresse=adresse,
+                ville=ville,
+                state=state,
+                zip_code=zip_code,
+                country=country,
+            )
+            user.save()
 
-                    user_next = Sitewebpam.objects.create(
-                        id_user=user_info,
-                        domaine=domaine,
-                        type=type_abonnement,
-                        terms_conditions = True,
-                    )
-                    user_next.save()
+            user_next = Sitewebpam.objects.create(
+                id_user=user_info,
+                domaine=domaine,
+                type=type_abonnement,
+                terms_conditions=True,
+            )
+            user_next.save()
 
-
-                    # Rediriger l'utilisateur vers la page dashboard.html après avoir créé le compte
-                    return render(request, 'dashboard.html')
-                else:
-                    # Le domaine n'existe pas
-                    return render(request, 'finalize_account.html', {'error': 'Domaine non valide'})
-            except whois.parser.PywhoisError as e:
-                # Erreur lors de la recherche du domaine
-                return render(request, 'finalize_account.html', {'error': str(e)})
+            # Rediriger l'utilisateur vers la page dashboard.html après avoir créé le compte
+            return render(request, 'dashboard.html')
         else:
             # Aucun domaine spécifié dans le formulaire
             return render(request, 'finalize_account.html', {'error': 'Veuillez spécifier un domaine'})
@@ -254,14 +240,3 @@ def setup_account(request):
 
 
 
-
-# def update_terms_conditions(request):
-#     if request.method == 'POST':
-#         # Mettre à jour terms_conditions pour l'utilisateur actuel
-#         user = request.user
-#         user.sitewebpam.terms_conditions = True
-#         user.sitewebpam.save()
-        
-#         return JsonResponse({'message': 'Terms and conditions updated successfully'})
-#     else:
-#         return JsonResponse({'error': 'Method not allowed'}, status=405)
