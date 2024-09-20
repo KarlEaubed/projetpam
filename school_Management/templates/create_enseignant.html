@@ -1,0 +1,112 @@
+{% block content %}
+{% load static %}
+
+{% include 'sidebar_school.html' with site_id=site_id domaine=domaine %}
+
+
+
+{% comment %} <div class="container">
+    <h2>Ajouter des informations</h2> {% endcomment %}
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <div class="container p-5">
+        <h5 class="pb-4">Ajouter un Enseignant</h5>
+        <div class="card mx-3 mt-n5 shadow-lg" style="border-radius: 10px; border-left:8px #007bff solid; border-right: none; border-top:none; border-bottom:none">
+         <div class="card-body">
+           <h4 class="card-title mb-3 text-primary text-uppercase">Information Perso</h4>
+           
+           
+        <form action="{% url 'create_enseignant_logic' domaine=domaine site_id=site_id %}" method="post" enctype="multipart/form-data">
+    
+            {% csrf_token %}
+             <div class="row">
+               <div class="col">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="code"  name="code" required>
+                    <label for="code">Code</label>
+                  </div>
+                 <div class="form-floating mb-3">
+                   <input type="text" class="form-control" id="nom"  name="nom" required>
+                   <label for="nom">Nom</label>
+                 </div>
+               </div>
+               <div class="col">
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" id="prenom" name="prenom">
+                  <label for="prenom">Prenom</label>
+                </div>
+              </div>
+    
+             </div>
+    
+             
+             <div class="form-floating mb-3">
+               <input type="email" class="form-control" id="email" name="email" >
+               <label for="email">Email</label>
+             </div>
+             <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="phone" placeholder="phone" name= "phone" required>
+                <label for="phone">Telephone</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="adresse"  name="adresse">
+                <label for="adresse">Adresse</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="password"  name="password">
+                <label for="password">Password</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="nom_cours"  name="nom_cours">
+                <label for="nom_cours">Cours Enseignes</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="date" class="form-control" id="date_de_rentree"  name="date_de_rentree">
+                <label for="date_de_rentree">Date de Rentre</label>
+              </div>
+    
+            
+             <input type="submit"  class="btn btn-primary" value="Ajouter">
+        </form>
+         </div>
+       </div>
+     </div>
+
+</div>
+
+
+<div class="card-group">
+    {% for info in infos %}
+    <div class="card">
+        <img class="card-img-top" src="{{ about.image.url }}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{ info.nom }}</h5>
+            <h5 class="card-title">{{ info.prenom }}</h5>
+            <h5 class="card-title">{{ info.phone }}</h5>
+            <h5 class="card-title">{{ info.email }}</h5>
+            <h5 class="card-title">{{ info.adresse }}</h5>
+            
+            <p class="card-text">{{ info.location }}</p>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+        <!-- Bouton pour la modification du service -->
+        {% comment %} <form method="GET" action="{% url 'modif_pro' pro.id %}">
+            <button type="submit" class="btn btn-primary">Modifier</button>
+        </form> {% endcomment %}
+    </div>
+    {% endfor %}
+</div>
+
+
+
+
+{% endblock %}

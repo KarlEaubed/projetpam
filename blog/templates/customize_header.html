@@ -1,0 +1,513 @@
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <title>.WebPam | Dashboard</title>
+        <link rel="stylesheet" href="{% static 'assets/vendors/mdi/css/materialdesignicons.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'assets/vendors/flag-icon-css/css/flag-icon.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'assets/vendors/css/vendor.bundle.base.css' %}" />
+        <link rel="stylesheet" href="{% static 'assets/vendors/font-awesome/css/font-awesome.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/customize_header.css' %}" />
+        <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" />
+        <style>
+        .initials-container {
+            width: 40px; /* Taille du cercle */
+            height: 40px; /* Taille du cercle */
+            border-radius: 50%; /* Rendre le conteneur rond */
+            background-color: black; /* Couleur de fond noire */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .initials {
+            color: white; /* Couleur du texte en blanc */
+            font-size: 18px; /* Taille du texte */
+        }
+        </style>
+    </head>
+    <body>
+        <div class="container-scroller">
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <div class="text-center sidebar-brand-wrapper d-flex align-items-center">
+                <a class="sidebar-brand brand-logo"><img src="{% static 'assets/images/WEBPAM.png' %}" alt="logo" /></a>
+                </div>
+                <ul class="nav">
+                <li class="nav-item nav-profile">
+                    <a href="#" class="nav-link">
+                    <div class="nav-profile-image">
+                        {% if user_add.image %}
+                        <img src="{{ user_add.image.url }}" alt="profile" />
+                        {% else %}
+                        <div class="initials-container">
+                            <span class="initials">{{ user_add.initials }}</span>
+                        </div>
+                        {% endif %}
+                    </div>                            
+                    <div class="nav-profile-text d-flex flex-column pr-3">
+                        <span class="font-weight-medium mb-2">{{ user_info.username }}</span>
+                        <span class="font-weight-normal">{{ site_title }}</span>
+                    </div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'dashboard_blog' domaine=domaine %}">
+                    <i class="mdi mdi-home menu-icon"></i>
+                    <span class="menu-title">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'menu' domaine=domaine %}">
+                    <i class="mdi mdi-menu menu-icon"></i>
+                    <span class="menu-title">Menu</span>
+                    </a>
+                </li>
+                {% if user_grade != '2' %}
+                    <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                        <i class="mdi mdi-wrench menu-icon"></i>
+                        <span class="menu-title">Customize</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="ui-basic">
+                        <ul class="nav flex-column sub-menu">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'design_header_site_blog' domaine=domaine site_id=site_id %}">Header</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Body</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Footer</a>
+                        </li>
+                        </ul>
+                    </div>
+                    </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                    <i class="mdi mdi-message menu-icon"></i>
+                    <span class="menu-title">Message</span>
+                    </a>
+                </li>
+                {% if user_grade != '2' %}
+                    <li class="nav-item">
+                    <a class="nav-link" href="{% url 'marketplace' domaine=domaine %}">
+                        <i class="mdi mdi-cart menu-icon"></i>
+                        <span class="menu-title">Marketplace</span>
+                    </a>
+                    </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'view_site' domaine=domaine site_id=site_id %}">
+                    <i class="mdi mdi-eye menu-icon"></i>
+                    <span class="menu-title">View Site</span>
+                    </a>
+                </li>
+                {% if user_grade != '2' %}
+                    <li class="nav-item">
+                    <span class="nav-link" href="#">
+                        <span class="menu-title">Manage</span>
+                    </span>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="/pricing">
+                        <i class="mdi mdi-settings menu-icon"></i>
+                        <span class="menu-title">Settings</span>
+                    </a>
+                    </li>
+                {% endif %}
+                <li class="nav-item sidebar-actions">
+                    <div class="nav-link">
+                    <div class="mt-4">
+                        <div class="border-none">
+                        <p class="text-black">Notification</p>
+                        </div>
+                        <ul class="mt-4 pl-0">
+                        <li>Sign Out</li>
+                        </ul>
+                    </div>
+                    </div>
+                </li>
+                </ul>
+            </nav>
+            <div class="container-fluid page-body-wrapper">
+                <nav class="navbar col-lg-12 col-12 p-lg-0 fixed-top d-flex flex-row">
+                <div class="navbar-menu-wrapper d-flex align-items-stretch justify-content-between">
+                    <button class="navbar-toggler navbar-toggler align-self-center mr-2" type="button" data-toggle="minimize">
+                    <i class="mdi mdi-menu"></i>
+                    </button>
+                    <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+                        <i class="mdi mdi-bell-outline"></i>
+                        <span class="count count-varient1">{{ unread_notifications_count }}</span>
+                        </a>
+                        <div class="dropdown-menu navbar-dropdown navbar-dropdown-large preview-list" aria-labelledby="notificationDropdown">
+                        <h6 class="p-3 mb-0">Notifications</h6>
+                        {% if notifications %}
+                            {% for notification in notifications %}
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="initials-container">
+                                        <span class="initials">{{ notification.user.initials }}</span>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <p class="mb-0">{{ notification.message }} <span class="text-small text-muted">{{ notification.created_at }}</span></p>
+                                </div>
+                            </a>
+                            {% endfor %}                        
+                        {% else %}
+                            <p class="p-3 mb-0">No notifications</p>
+                        {% endif %}
+                        <div class="dropdown-divider"></div>
+                        <p class="p-3 mb-0">View all activities</p>
+                        </div>
+                    </li>                  
+                    <li class="nav-item dropdown d-none d-sm-flex">
+                        <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown">
+                        <i class="mdi mdi-email-outline"></i>
+                        <span class="count count-varient2">5</span>
+                        </a>
+                        <div class="dropdown-menu navbar-dropdown navbar-dropdown-large preview-list" aria-labelledby="messageDropdown">
+                        <h6 class="p-3 mb-0">Messages</h6>
+                        <a class="dropdown-item preview-item">
+                            <div class="preview-item-content flex-grow">
+                            <span class="badge badge-pill badge-success">Request</span>
+                            <p class="text-small text-muted ellipsis mb-0"> Suport needed for user123 </p>
+                            </div>
+                            <p class="text-small text-muted align-self-start"> 4:10 PM </p>
+                        </a>
+                        <a class="dropdown-item preview-item">
+                            <div class="preview-item-content flex-grow">
+                            <span class="badge badge-pill badge-warning">Invoices</span>
+                            <p class="text-small text-muted ellipsis mb-0"> Invoice for order is mailed </p>
+                            </div>
+                            <p class="text-small text-muted align-self-start"> 4:10 PM </p>
+                        </a>
+                        <a class="dropdown-item preview-item">
+                            <div class="preview-item-content flex-grow">
+                            <span class="badge badge-pill badge-danger">Projects</span>
+                            <p class="text-small text-muted ellipsis mb-0"> New project will start tomorrow </p>
+                            </div>
+                            <p class="text-small text-muted align-self-start"> 4:10 PM </p>
+                        </a>
+                        <h6 class="p-3 mb-0">See all activity</h6>
+                        </div>
+                    </li>
+                    <li class="nav-item nav-search border-0 ml-1 ml-md-3 ml-lg-5 d-none d-md-flex">
+                        <form class="nav-link form-inline mt-2 mt-md-0">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search" />
+                            <div class="input-group-append">
+                            <span class="input-group-text">
+                                <i class="mdi mdi-magnify"></i>
+                            </span>
+                            </div>
+                        </div>
+                        </form>
+                    </li>
+                    </ul>
+                    <ul class="navbar-nav navbar-nav-right ml-lg-auto">
+                    <li class="nav-item dropdown d-none d-xl-flex border-0">
+                        <a class="nav-link dropdown-toggle" id="languageDropdown" href="#" data-toggle="dropdown">
+                        <i class="mdi mdi-earth"></i> English </a>
+                        <div class="dropdown-menu navbar-dropdown" aria-labelledby="languageDropdown">
+                        <a class="dropdown-item" href="#"> French </a>
+                        <a class="dropdown-item" href="#"> Spain </a>
+                        <a class="dropdown-item" href="#"> Creole </a>
+                        </div>
+                    </li>
+                    <li class="nav-item nav-profile dropdown border-0">
+                        <a class="nav-link dropdown-toggle" id="profileDropdown" data-toggle="dropdown" style="display: flex; cursor: pointer;">
+                        <div class="nav-profile-img mr-2"></div>               
+                        <span class="profile-name">{{ user_info.username }}</span>
+                        </a>
+                        <div class="dropdown-menu navbar-dropdown w-120 mr-2" aria-labelledby="profileDropdown">
+                        <a class="dropdown-item" href="#">
+                            <i class="mdi mdi-cached mr-2 text-success"></i> Activity Log </a>
+                        <a class="dropdown-item" href="/logout">
+                            <i class="mdi mdi-logout mr-2 text-primary"></i> Signout </a>
+                        </div>
+                    </li>
+                    </ul>
+                    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                    <span class="mdi mdi-menu"></span>
+                    </button>
+                </div>
+                </nav>
+                <div class="main-panel">
+                    <div class="container my-4">
+                        <h2>Choisissez votre Navbar</h2>
+                        <p>Voici un aperçu des différentes navbars disponibles. Cliquez sur le bouton pour sélectionner votre préférée.</p>
+                    </div>
+                    <div class="container" id="navbarContainer1">
+                        <!-- Première Navbar -->
+                        <div class="navbar-title">navbar1</div>
+                        <nav class="navbar navbar-expand-lg navbar-custom-1" id="navbar1">
+                            <!-- Bouton de menu à gauche -->
+                            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarContent1" aria-controls="navbarContent1" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="fas fa-ellipsis-v navbar-toggler-icon"></span>
+                            </button>
+                        
+                            <!-- Titre centré -->
+                            <a class="navbar-brand" href="#">Navbar 1</a>
+                        
+                            <div class="collapse navbar-collapse justify-content-center" id="navbarContent1">
+                                <!-- Liens de la navbar -->
+                                <ul class="navbar-nav">
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">À propos</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Services</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Contact</a>
+                                    </li>
+                                </ul>
+                        
+                                <!-- Barre de recherche avec bouton côte à côte -->
+                                <form class="form-inline mx-auto my-2 my-lg-0">
+                                    <input class="form-control mr-2" type="search" placeholder="Taper votre recherche..." aria-label="Search">
+                                    <button class="btn btn-outline-light my-2 my-sm-2" type="submit">Rechercher</button>
+                                </form>
+                        
+                                {% if user_authenticated %}
+                                    <div class="circle-button" style="position: relative; background-color: black; color: white; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; margin-left: 10px; cursor: pointer;">
+                                        <span style="font-size: 18px;">{{ initials }}</span>
+                                    </div>
+                                    <div class="context-menu" id="context-menu">
+                                        <ul>
+                                            <li><a href="#">Signout</a></li>
+                                        </ul>
+                                    </div>                
+                                {% else %}
+                                    <!-- Boutons Login et Sign In -->
+                                    <ul class="navbar-nav">
+                                        <li class="nav-item">
+                                            <button class="btn btn-login my-2 my-sm-0 mr-2" type="button"><a href="{% url 'signin_blog' domaine=domaine site_id=site_id %}" class="exclude-color-change" style="text-decoration: none; color: #fff;">Login</a></button>
+                                        </li>
+                                        <li class="nav-item">
+                                            <button class="btn btn-signin my-2 my-sm-0" type="button"><a href="{% url 'register_blog' domaine=domaine site_id=site_id %}" class="exclude-color-change" style="text-decoration: none;">Sign Up</a></button>
+                                        </li>
+                                    </ul>
+                                {% endif %}
+                            </div>
+                        </nav>
+                        <input type="color" id="colorPicker1" class="mr-3">
+                        <button class="btn btn-primary btn-choix-1">Choisir Navbar 1</button>
+                    </div>
+
+                    <div class="container" id="navbarContainer2">
+                        <!-- Deuxième Navbar -->
+                        <div class="navbar-title">navbar2</div>
+                        <nav class="navbar navbar-expand-lg navbar-custom-2" id="navbar2">
+                            
+                            <a class="navbar-brand" href="#">Logo</a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul class="navbar-nav ml-auto">
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Service</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Contact</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">About</a>
+                                    </li>
+                                    {% if user_authenticated %}
+                                        <div class="circle-button" style="position: relative; background-color: black; color: white; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; margin-left: 10px; cursor: pointer;">
+                                            <span style="font-size: 18px;">{{ initials }}</span>
+                                        </div>
+                                        <div class="context-menu" id="context-menu">
+                                            <ul>
+                                                <li><a href="#">Signout</a></li>
+                                            </ul>
+                                        </div>                
+                                    {% else %}
+                                        <li class="nav-item">
+                                            <button class="btn btn-outline-light btn-login" type="button"><a href="{% url 'signin_blog' domaine=domaine site_id=site_id %}" class="exclude-color-change" style="text-decoration: none; color: #fff;">Login</a></button>
+                                        </li>
+                                        <li class="nav-item">
+                                            <button class="btn btn-primary btn-signup" type="button"><a href="{% url 'register_blog' domaine=domaine site_id=site_id %}" class="exclude-color-change" style="text-decoration: none; color: #fff;">Sign Up</a></button>
+                                        </li>
+                                        {% endif %}
+                                </ul>
+                            </div>
+                        </nav>
+                        <input type="color" id="colorPicker2" class="mr-3">
+                        <button class="btn btn-primary btn-choix-2">Choisir Navbar 2</button>
+                    </div>
+                    
+                    <!-- Sidebar -->
+                    <div id="sidebar1" class="sidebar1">
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+                        <h5>Customize the Font Family of Your Header</h5>
+                        <select id="fontFamilySelector">
+                            <option value="Arial">Arial</option>
+                            <option value="Helvetica">Helvetica</option>
+                            <option value="Times New Roman">Times New Roman</option>
+                            <option value="Courier New">Courier New</option>
+                            <!-- Ajoutez d'autres options de famille de polices si nécessaire -->
+                        </select>
+                    
+                        <h5>Customize the Font Color of Your Header</h5>
+                        <input type="color" id="fontColorPicker" value="#000000">
+                    
+                        <h5>Customize the Font Size of Your Header</h5>
+                        <input type="range" id="fontSizeSlider" min="10" max="100" value="16">
+                    </div>
+
+
+                    <!-- Flèche pour ouvrir le sidebar -->
+                    <div id="openSidebar" class="openSidebar" onclick="openNav()">➔</div>
+                </div>
+                <!-- main-panel ends -->
+            </div>
+            <!-- page-body-wrapper ends -->
+        </div>
+        <!-- container-scroller -->
+        <!-- plugins:js -->
+        <script src="{% static 'assets/vendors/js/vendor.bundle.base.js' %}"></script>
+        <!-- endinject -->
+        <!-- Plugin js for this page -->
+        <script src="{% static 'assets/vendors/chart.js/Chart.min.js' %}"></script>
+        <script src="{% static 'assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js' %}"></script>
+        <script src="{% static 'assets/vendors/flot/jquery.flot.js' %}"></script>
+        <script src="{% static 'assets/vendors/flot/jquery.flot.resize.js' %}"></script>
+        <script src="{% static 'assets/vendors/flot/jquery.flot.categories.js' %}"></script>
+        <script src="{% static 'assets/vendors/flot/jquery.flot.fillbetween.js' %}"></script>
+        <script src="{% static 'assets/vendors/flot/jquery.flot.stack.js' %}"></script>
+        <script src="{% static 'assets/vendors/flot/jquery.flot.pie.js' %}"></script>
+        <!-- End plugin js for this page -->
+        <!-- inject:js -->
+        <script src="{% static 'assets/js/off-canvas.js' %}"></script>
+        <script src="{% static 'assets/js/hoverable-collapse.js' %}"></script>
+        <script src="{% static 'assets/js/misc.js' %}"></script>
+        <!-- endinject -->
+        <!-- Custom js for this page -->
+        <script src="{% static 'assets/js/dashboard.js' %}"></script>
+        <script src="{% static 'js/customize_header.js' %}"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+            const siteId = "{{ site_id }}";
+            const domaine = "{{ domaine }}";
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const btnChoose1 = document.querySelector('#navbarContainer1 .btn-choix-1');
+                const btnChoose2 = document.querySelector('#navbarContainer2 .btn-choix-2');
+        
+                // Vérifier si les éléments existent avant d'ajouter des écouteurs d'événements
+                if (btnChoose1) {
+                    btnChoose1.addEventListener('click', function() {
+                        console.log('Bouton Choisir Navbar 1 cliqué');
+                        copyNavbar('navbar1');
+                    });
+                } else {
+                    console.error("Élément #navbarContainer1 .btn-choix-1 n'a pas été trouvé.");
+                }
+        
+                if (btnChoose2) {
+                    btnChoose2.addEventListener('click', function() {
+                        console.log('Bouton Choisir Navbar 2 cliqué');
+                        copyNavbar('navbar2');
+                    });
+                } else {
+                    console.error("Élément #navbarContainer2 .btn-choix-2 n'a pas été trouvé.");
+                }
+        
+                function getCookie(name) {
+                    let cookieValue = null;
+                    if (document.cookie && document.cookie !== '') {
+                        const cookies = document.cookie.split(';');
+                        for (let i = 0; i < cookies.length; i++) {
+                            const cookie = cookies[i].trim();
+                            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                break;
+                            }
+                        }
+                    }
+                    return cookieValue;
+                }
+        
+                function copyNavbar(navbarId) {
+                    console.log('copyNavbar appelé avec id :', navbarId);
+                    var navbarElement = document.getElementById(navbarId);
+                    if (!navbarElement) {
+                        console.error('Navbar element with id="' + navbarId + '" not found');
+                        return;
+                    }
+                    var navbarContent = navbarElement.outerHTML;
+                    sessionStorage.setItem('selectedNavbar', navbarContent);
+                    sessionStorage.setItem('copiedSiteId', "{{ site_id }}"); // Assurez-vous que `copiedSiteId` est correctement stocké
+        
+                    const copiedSiteId = sessionStorage.getItem('copiedSiteId'); // Récupérez `copiedSiteId` correctement
+        
+                    // Vérifiez si les identifiants de site correspondent
+                    const pageSiteId = "{{ site_id }}";
+                    if (copiedSiteId === pageSiteId) {
+                        const data = {
+                            site_id: siteId,
+                            navbar_html: sessionStorage.getItem('selectedNavbar')
+                        };
+        
+                        fetch(`/save_navbar_html/${domaine}/${siteId}/`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded',
+                                'X-CSRFToken': getCookie('csrftoken'),
+                            },
+                            body: new URLSearchParams(data)
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            if (data.status === 'success') {
+                                window.location.href = data.redirect_url;
+                            } else {
+                                console.error('Error:', data.message);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                    } else {
+                        console.log("Les identifiants de site ne correspondent pas.");
+                    }
+                }
+            });
+        </script>
+        
+        
+        
+        
+        
+        <!-- End custom js for this page -->
+    </body>
+</html>
+{% endblock %}

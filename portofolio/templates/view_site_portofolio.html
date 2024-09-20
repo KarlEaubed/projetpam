@@ -1,0 +1,737 @@
+{% load static %}
+
+
+
+<!DOCTYPE html>
+<!-- Coding By SenTaks with parts from boostrap - boostrap.com -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+
+     <!-- Lightbox CSS -->
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" rel="stylesheet">
+   <!-- Owl Carousel CSS -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+
+   {% comment %} css skill {% endcomment %}
+   <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/skills/skill-1/assets/css/skill-1.css" />
+
+   <!-- Bootstrap Bundle with Popper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js" integrity="sha512-NmC8rDyLGlSGwGnxk0B0cRj/X+kb9NTkR0x0gkNUmjhh6jPloahf58xmAC2OkvOvzbx2wYt1hCWlH9nYTQV06w==" crossorigin="anonymous" defer></script>
+{% comment %} Bootstrap Modal {% endcomment %}
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+ 
+   <link rel="stylesheet" href="{% static 'css/cover.css' %}">
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+        
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+        
+        .b-example-divider {
+            width: 100%;
+            height: 3rem;
+            background-color: rgba(0, 0, 0, .1);
+            border: solid rgba(0, 0, 0, .15);
+            border-width: 1px 0;
+            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+        }
+        
+        .b-example-vr {
+            flex-shrink: 0;
+            width: 1.5rem;
+            height: 100vh;
+        }
+        
+        .bi {
+            vertical-align: -.125em;
+            fill: currentColor;
+        }
+        
+        .nav-scroller {
+            position: relative;
+            z-index: 2;
+            height: 2.75rem;
+            overflow-y: hidden;
+        }
+        
+        .nav-scroller .nav {
+            display: flex;
+            flex-wrap: nowrap;
+            padding-bottom: 1rem;
+            margin-top: -1px;
+            overflow-x: auto;
+            text-align: center;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .btn-bd-primary {
+            --bd-violet-bg: #712cf9;
+            --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+            --bs-btn-font-weight: 600;
+            --bs-btn-color: var(--bs-white);
+            --bs-btn-bg: var(--bd-violet-bg);
+            --bs-btn-border-color: var(--bd-violet-bg);
+            --bs-btn-hover-color: var(--bs-white);
+            --bs-btn-hover-bg: #6528e0;
+            --bs-btn-hover-border-color: #6528e0;
+            --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+            --bs-btn-active-color: var(--bs-btn-hover-color);
+            --bs-btn-active-bg: #5a23c8;
+            --bs-btn-active-border-color: #5a23c8;
+        }
+        
+        .bd-mode-toggle {
+            z-index: 1500;
+        }
+        
+        .bd-mode-toggle .dropdown-menu .active .bi {
+            display: block !important;
+        }
+
+        .item {
+            text-align: center;
+             }
+        .item h1,
+        .item p {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            }
+
+            .service-card {
+              width: 350px; /* Largeur fixe pour toutes les cartes */
+          }
+      
+          .service-icon img {
+              width: 25px;
+              height: 25px;
+              border-radius: 50%;
+          }
+    
+    </style>
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/docs/5.3/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="manifest" href="/docs/5.3/assets/img/favicons/manifest.json">
+    <link rel="mask-icon" href="/docs/5.3/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
+    <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon.ico">
+    <meta name="theme-color" content="#712cf9">
+    <link href="features.css" rel="stylesheet">
+</head>
+
+<body>
+
+
+    <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+
+
+    <!-- Nav Section -->
+    <nav class="navbar navbar-expand-md bg-dark sticky-top border-bottom" data-bs-theme="dark">
+        <div class="container">
+            <a class="navbar-brand d-md-none" href="#">
+                <svg class="bi" width="24" height="24"><use xlink:href="#aperture"/></svg>LOGO
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="#offcanvas" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="#offcanvas" aria-labelledby="#offcanvasLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="#offcanvasLabel">Logo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav flex-grow-1 justify-content-between">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <svg class="bi" width="24" height="24"><use xlink:href="#aperture"/></svg>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Services</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#">About Me</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Skills</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <svg class="bi" width="24" height="24"><use xlink:href="#cart"/></svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <!-- Heroe Section -->
+    {% for heroe in heroes %}
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary" style="background-image: url('{{ heroe.image.url }}'); background-size: cover; background-position: center;">
+        <div class="col-md-6 p-lg-5 mx-auto my-5">
+            <h1 class="display-3 fw-bold text-white">{{ heroe.titre1 }}</h1>
+            <h1 class="display-3 fw-bold text-white">{{ heroe.titre2 }}</h1>
+
+            <h3 class="fw-normal text-muted mb-3 text-white">{{ heroe.paragraphe }}</h3>
+            <div class="d-flex gap-3 justify-content-center lead fw-normal">
+                <a class="icon-link text-white" href="#"> Download CV <svg class="bi"><use xlink:href="#chevron-right"/></svg></a>
+            </div>
+        </div>
+        <div class="product-device shadow-sm d-none d-md-block"></div>
+        <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+    </div>
+    {% endfor %}
+
+    <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+     <!-- End Heroe -->
+
+
+
+
+
+
+  
+    <div class="b-example-divider"></div>
+
+    {% if about %}
+        <!-- About Section -->
+        <div class="container col-xxl-8 px-4 py-5">
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                <div class="col-10 col-sm-8 col-lg-6">
+                    <img src="{{ about.image.url }}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+                </div>
+                <div class="col-lg-6">
+                    <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">About Me</h1>
+                    <p class="lead">{{ about.texte }}</p>
+                    {% if about.autre %}
+                    <p class="lead">{{ about.autre }}</p>
+                    {% endif %}
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+    
+                        <button type="button" class="btn btn-outline-secondary btn-lg px-4">Recent Project</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% endif %}
+
+         <!-- End Section About -->
+    
+        <div class="b-example-divider"></div>
+
+
+
+
+
+
+{% comment %} Section Experience {% endcomment %}
+
+        <div class="container px-4 py-5">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="section-title">
+                        <h2>Experience</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 m-15px-tb">
+                    <div class="resume-box">
+                        <ul>
+                            {% for etude in etudes %}
+                            <li>
+                                <div class="icon">
+                                    <i class="fas fa-user-graduate"></i>
+                                </div>
+                                <span class="time">{{ etude.debut }} - {{ etude.fin }}</span>
+                                <h5>{{ etude.domaine }} - {{ etude.ecole }}</h5>
+                                <p>{{ etude.description }}</p>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 m-15px-tb">
+                    <div class="resume-box">
+                        <ul>
+                            {% for carriere in carrieres %}
+                            <li>
+                                <div class="icon">
+                                    <i class="fas fa-briefcase"></i>
+                                </div>
+                                <span class="time">{{ carriere.debut }} - {{ carriere.fin }}</span>
+                                <h5>{{ carriere.poste }} - {{ carriere.compagnie }}</h5>
+                                <p>{{ carriere.description }}</p>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+                
+
+       
+       
+
+
+
+          <!--  Section  ENDE xperience -->
+
+       
+
+
+
+
+
+        <div class="b-example-divider"></div>
+
+        <!-- Skill Section -->
+        <div class="container px-4 py-5" id="hanging-icons">
+
+            <!-- Skill 1 - Bootstrap Brain Component -->
+        <section class="bsb-skill-1 bg-light py-3 py-md-5">
+            <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+                <h2 class="mb-4 display-5 text-center">Skills</h2>
+                <p class="text-secondary mb-5 text-center lead fs-4"></p>
+                <hr class="w-50 mx-auto mb-5 mb-xl-9 border-dark-subtle">
+                </div>
+            </div>
+            </div>
+        
+            <div class="container overflow-hidden">
+            <div class="row justify-content-xl-center gy-3 gy-sm-4">
+                {% for skill in skills %}
+                <div class="col-12 col-sm-6 col-xl-5">
+                <div class="bg-white rounded shadow-sm p-3 p-md-4 p-xxl-5">
+                    <h3 class="fw-bold mb-2">{{ skill.nom }}</h3>
+                    <p class="text-secondary fst-italic mb-4">{{ skill.description }}</p>
+                    <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="{{ skill.nom }}" aria-valuenow="{{ skill.pourcentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ skill.pourcentage }}%">{{ skill.pourcentage }}%</div>
+                    </div>
+                </div>
+                </div>
+                {% endfor %}
+            </div>
+            </div>
+        </section>
+
+
+        
+        </div>
+
+
+ 
+
+
+
+        <!-- End Skill Section -->
+
+
+
+
+        <div class="b-example-divider"></div>
+
+
+
+<!-- Service Section -->
+<div class="container px-4 py-5" id="hanging-icons">
+    <h2 class="pb-2 border-bottom">Service</h2>
+    <div class="row g-4 py-5">
+        {% for service in services %}
+        <div class="col-md-4">
+            <div class="card service-card">
+                <div class="card-body">
+                    <div class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3 service-icon">
+                        <img src="{{ service.image.url }}" alt="{{ service.titre }}">
+                    </div>
+                    <div>
+                        <h3 class="fs-2 text-body-emphasis">{{ service.titre }}</h3>
+                        <p>{{ service.descriptions }}</p>
+                        <div class="row">
+                            <div class="col">
+                                <!-- Lien pour ouvrir le modal -->
+                                <a href="#" class="btn btn-outline-secondary bg-primary" data-bs-toggle="modal" data-bs-target="#emailModal{{ service.id }}">
+                                    <i class="bi bi-envelope-at-fill text-white"></i> 
+                                </a>
+                            </div>
+                            <div class="col">
+                                
+                                <a href="#" class="btn btn-outline-secondary bg-success" data-bs-toggle="modal" data-bs-target="#whatsappModal{{ service.id }}">
+
+                                    <i class="bi bi-whatsapp text-white"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Email -->
+        <div class="modal fade" id="emailModal{{ service.id }}" tabindex="-1" aria-labelledby="emailModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="emailModalLabel">Envoyer un Email</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" action="{% url 'send_email' site_id=site_id %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="service" value="{{ service.titre }}">
+                            <div class="mb-3">
+                                <label for="nometprenom" class="form-label">Nom et Prénom</label>
+                                <input type="text" class="form-control" id="nometprenom" name="nometprenom" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="contenu" class="form-label">Contenu</label>
+                                <textarea class="form-control" id="contenu" name="contenu" rows="4" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="budget" class="form-label">Budget</label>
+                                <select class="form-select" id="budget" name="budget" required>
+                                    <option value="0-100">$0 - $100</option>
+                                    <option value="100-200">$100 - $200</option>
+                                    <option value="200-500">$200 - $500</option>
+                                    <option value="500-X">$500 et plus</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                <button type="submit" class="btn btn-primary">Envoyer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modal WhatsApp -->
+        <div class="modal fade" id="whatsappModal{{ service.id }}" tabindex="-1" aria-labelledby="whatsappModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="whatsappModalLabel">Envoyer un Message WhatsApp</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" action="{% url 'send_whatsapp' site_id=site_id %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="service" value="{{ service.titre }}">
+                            <div class="mb-3">
+                                <label for="nometprenom_whatsapp" class="form-label">Nom et Prénom</label>
+                                <input type="text" class="form-control" id="nometprenom_whatsapp" name="nometprenom" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="whatsapp" class="form-label">Numéro WhatsApp</label>
+                                <input type="text" class="form-control" id="whatsapp" name="whatsapp" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="contenu_whatsapp" class="form-label">Contenu</label>
+                                <textarea class="form-control" id="contenu_whatsapp" name="contenu" rows="4" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="budget_whatsapp" class="form-label">Budget</label>
+                                <select class="form-select" id="budget_whatsapp" name="budget" required>
+                                    <option value="0-100">$0 - $100</option>
+                                    <option value="100-200">$100 - $200</option>
+                                    <option value="200-500">$200 - $500</option>
+                                    <option value="500-X">$500 et plus</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                <button type="submit" class="btn btn-success">Envoyer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+ 
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-example-divider"></div>
+
+  <!-- Section Project -->
+<div class="container px-4 py-5" id="hanging-icons">
+  <h2 class="pb-2 border-bottom">Projet</h2>
+  
+
+  <div class="owl-carousel owl-theme">
+      {% for pro in pro %}
+      <div class="item">
+          <a href="{{ pro.image.url }}" data-toggle="lightbox" data-gallery="gallery1" data-title="{{ pro.titre }}">
+              <img src="{{ pro.image.url }}" class="img-fluid mb-3" alt="{{ pro.titre }}">
+          </a>
+          <h1>{{ pro.titre }}</h1>
+          <p>{{ pro.description }}</p>
+      </div>
+      {% endfor %}
+  </div>
+
+</div>
+</div>
+
+<div class="b-example-divider"></div>
+
+
+
+
+
+{% comment %} Section Contact {% endcomment %}
+
+<div class="container">
+    <h2 class="text-center">Contact</h2>
+    <form action="{% url 'contact_view' site_id=site_id %}" method="POST">
+        {% csrf_token %}
+        <div class="mb-3 row">
+            <label for="nometprenom" class="col-sm-3 col-form-label">Nom et Prénom</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="nometprenom" name="nometprenom" required>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="email" class="col-sm-3 col-form-label">Email</label>
+            <div class="col-sm-6">
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="service" class="col-sm-3 col-form-label">Service</label>
+            <div class="col-sm-6">
+                <select class="form-select" id="service" name="service" required>
+                    <option value="" selected disabled>Choisissez un service</option>
+                    {% for service in services %}
+                    <option value="{{ service.id }}">{{ service.titre }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="demande" class="col-sm-3 col-form-label">Demande</label>
+            <div class="col-sm-6">
+                <textarea class="form-control" id="demande" name="demande" rows="3" required></textarea>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="budget" class="col-sm-3 col-form-label">Budget</label>
+            <div class="col-sm-6">
+                <select class="form-select" id="budget" name="budget">
+                    <option value="">Choisissez un budget (facultatif)</option>
+                    <option value="0-100">0 - 100</option>
+                    <option value="100-200">100 - 200</option>
+                    <option value="200-500">200 - 500</option>
+                    <option value="500-1000">500 - 1000</option>
+                </select>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <div class="col-sm-6 offset-sm-3">
+                <button type="submit" class="btn btn-primary">Envoyer</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+    
+
+
+
+
+    <div class="b-example-divider"></div>
+    <!-- footer Section -->
+
+    <div class="container">
+        <footer class="py-5">
+            <div class="row">
+                <div class="col-6 col-md-2 mb-3">
+                    <h5>Section</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-6 col-md-2 mb-3">
+                    <h5>Section</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-6 col-md-2 mb-3">
+                    <h5>Section</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-5 offset-md-1 mb-3">
+                    <form>
+                        <h5>Subscribe to our newsletter</h5>
+                        <p>Monthly digest of what's new and exciting from us.</p>
+                        <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                            <label for="newsletter1" class="visually-hidden">Email address</label>
+                            <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+                            <button class="btn btn-primary" type="button">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+                <p>&copy; 2024 SynTax, Inc. All rights reserved.</p>
+                <ul class="list-unstyled d-flex">
+                    <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
+                    <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
+                    <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+
+<!-- Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Lightbox JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
+<!-- Owl Carousel JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js" integrity="sha512-NmC8rDyLGlSGwGnxk0B0cRj/X+kb9NTkR0x0gkNUmjhh6jPloahf58xmAC2OkvOvzbx2wYt1hCWlH9nYTQV06w==" crossorigin="anonymous" defer></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+z8vwu7+O6XsbsiYFScs/p2Cm3ZL5ohBZb5iqQ3" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.min.js" integrity="sha384-pzjw8f+4DvO6p/QSm6UihJ9wlKh1Q0/F8+SHr+GzXRXb5WlX2/d8j4abpfRY6LZ6" crossorigin="anonymous"></script>
+
+
+
+
+
+
+<script>
+  $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+    event.preventDefault();
+    $(this).ekkoLightbox();
+  });
+
+  $(document).ready(function(){
+    $(".owl-carousel").owlCarousel({
+      loop:true,
+      margin:10,
+      nav:true,
+      responsive:{
+        0:{
+          items:1
+        },
+        600:{
+          items:1
+        },
+        1000:{
+          items:3
+        }
+      }
+    });
+  });
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('form[action*="send_whatsapp"]').forEach(form => {
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                const formData = new FormData(this);
+                const action = this.action;
+    
+                fetch(action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-CSRFToken': formData.get('csrfmiddlewaretoken'),
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.whatsapp_url) {
+                        window.open(data.whatsapp_url, '_blank');
+                    } else {
+                        alert('Une erreur est survenue.');
+                    }
+                });
+            });
+        });
+    });
+    </script>
+    
+
+</body>
+
+</html>

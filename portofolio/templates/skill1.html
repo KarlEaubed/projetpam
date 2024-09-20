@@ -1,0 +1,49 @@
+{% load static %}
+
+        <!-- Skill Section -->
+        <div class="container px-4 py-5" id="hanging-icons">
+
+            <!-- Skill 1 - Bootstrap Brain Component -->
+        <section class="bsb-skill-1 bg-light py-3 py-md-5">
+            <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+                <h2 class="mb-4 display-5 text-center">Skills</h2>
+                <p class="text-secondary mb-5 text-center lead fs-4"></p>
+                <hr class="w-50 mx-auto mb-5 mb-xl-9 border-dark-subtle">
+                </div>
+            </div>
+            </div>
+        
+            <div class="container overflow-hidden">
+            <div class="row justify-content-xl-center gy-3 gy-sm-4">
+                {% for skill in skills %}
+                <div class="col-12 col-sm-6 col-xl-5">
+                <div class="bg-white rounded shadow-sm p-3 p-md-4 p-xxl-5">
+                    <h3 class="fw-bold mb-2">{{ skill.nom }}</h3>
+                    <p class="text-secondary fst-italic mb-4">{{ skill.description }}</p>
+                    <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="{{ skill.nom }}" aria-valuenow="{{ skill.pourcentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ skill.pourcentage }}%">{{ skill.pourcentage }}%</div>
+                    </div>
+                </div>
+                </div>
+                {% endfor %}
+            </div>
+            </div>
+        </section>
+
+
+        
+        </div>
+
+
+ 
+
+
+
+        <!-- End Skill Section -->
+
+
+
+
+        <div class="b-example-divider"></div>

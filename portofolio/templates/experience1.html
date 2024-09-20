@@ -1,0 +1,62 @@
+{% load static %}
+{% comment %} Section Experience {% endcomment %}
+
+<div class="container px-4 py-5">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="section-title">
+                <h2>Experience</h2>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 m-15px-tb">
+            <div class="resume-box">
+                <ul>
+                    {% for etude in etudes %}
+                    <li>
+                        <div class="icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <span class="time">{{ etude.debut }} - {{ etude.fin }}</span>
+                        <h5>{{ etude.domaine }} - {{ etude.ecole }}</h5>
+                        <p>{{ etude.description }}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-6 m-15px-tb">
+            <div class="resume-box">
+                <ul>
+                    {% for carriere in carrieres %}
+                    <li>
+                        <div class="icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <span class="time">{{ carriere.debut }} - {{ carriere.fin }}</span>
+                        <h5>{{ carriere.poste }} - {{ carriere.compagnie }}</h5>
+                        <p>{{ carriere.description }}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+        
+
+
+
+
+
+
+  <!--  Section  ENDE xperience -->
+
+
+
+
+
+
+
+<div class="b-example-divider"></div>

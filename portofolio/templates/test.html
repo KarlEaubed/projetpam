@@ -1,0 +1,95 @@
+{% block content %}
+{% load static %}
+
+{% include 'headerporto.html' with site_id=site_id %}
+
+<div class="container">
+    <h2 class="text-center">Personnalisation du Design</h2>
+    <form action="{% url 'design_site' domaine=domaine site_id=site_id %}" method="POST">
+        {% csrf_token %}
+        <div class="mb-3 row">
+            <label for="navbar_choice" class="col-sm-3 col-form-label">Navbar</label>
+            <div class="col-sm-6">
+                <select class="form-select" id="navbar_choice" name="navbar_choice" required>
+                    <option value="navbar1.html" data-img-url="{% static 'images/navbar1.png' %}" {% if design.navbar_choice == 'navbar1.html' %}selected{% endif %}>Navbar 1</option>
+                    <option value="navbar2.html" data-img-url="{% static 'images/navbar2.png' %}" {% if design.navbar_choice == 'navbar2.html' %}selected{% endif %}>Navbar 2</option>
+                    <option value="navbar3.html" data-img-url="{% static 'images/navbar3.png' %}" {% if design.navbar_choice == 'navbar3.html' %}selected{% endif %}>Navbar 3</option>
+                    <option value="navbar4.html" data-img-url="{% static 'images/navbar4.png' %}" {% if design.navbar_choice == 'navbar4.html' %}selected{% endif %}>Navbar 4</option>
+                    <option value="navbar5.html" data-img-url="{% static 'images/navbar5.png' %}" {% if design.navbar_choice == 'navbar5.html' %}selected{% endif %}>Navbar 5</option>
+                </select>
+            </div>
+            <div class="col-sm-3">
+                <img id="navbar_preview" src="" alt="Navbar Preview" class="img-fluid" style="display:none; cursor:pointer;">
+            </div>
+        </div>
+        <!-- Répétez la même structure pour les autres sélecteurs -->
+        <!-- ... -->
+        <div class="mb-3 row">
+            <div class="col-sm-6 offset-sm-3">
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">Image en Plein Écran</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img id="modalImage" src="" alt="Image en Plein Écran" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    function updateImagePreview(selectElement, imgElement) {
+        const selectedOption = selectElement.options[selectElement.selectedIndex];
+        const imgURL = selectedOption.getAttribute('data-img-url');
+        if (imgURL) {
+            imgElement.src = imgURL;
+            imgElement.style.display = 'block';
+        } else {
+            imgElement.style.display = 'none';
+        }
+    }
+
+    const navbarChoice = document.getElementById('navbar_choice');
+    const navbarPreview = document.getElementById('navbar_preview');
+    const modalImage = document.getElementById('modalImage');
+    const imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
+
+    // Initial update
+    updateImagePreview(navbarChoice, navbarPreview);
+
+    navbarChoice.addEventListener('change', function() {
+        updateImagePreview(navbarChoice, navbarPreview);
+    });
+
+    navbarChoice.addEventListener('mousemove', function(event) {
+        const option = document.elementFromPoint(event.clientX, event.clientY);
+        if (option && option.tagName === 'OPTION') {
+            const imgURL = option.getAttribute('data-img-url');
+            if (imgURL) {
+                navbarPreview.src = imgURL;
+                navbarPreview.style.display = 'block';
+            } else {
+                navbarPreview.style.display = 'none';
+            }
+        }
+    });
+
+    navbarPreview.addEventListener('click', function() {
+        modalImage.src = navbarPreview.src;
+        imageModal.show();
+    });
+});
+</script>
+
+{% endblock %}

@@ -1,0 +1,136 @@
+{% load static %}
+<!-- Service Section -->
+<div class="container px-4 py-5" id="hanging-icons">
+    <h2 class="pb-2 border-bottom">Service</h2>
+    <div class="row g-4 py-5">
+        {% for service in services %}
+        <div class="col-md-4">
+            <div class="card service-card">
+                <div class="card-body">
+                    <div class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3 service-icon">
+                        <img src="{{ service.image.url }}" alt="{{ service.titre }}">
+                    </div>
+                    <div>
+                        <h3 class="fs-2 text-body-emphasis">{{ service.titre }}</h3>
+                        <p>{{ service.descriptions }}</p>
+                        <div class="row">
+                            <div class="col">
+                                <!-- Lien pour ouvrir le modal -->
+                                <a href="#" class="btn btn-outline-secondary bg-primary" data-bs-toggle="modal" data-bs-target="#emailModal{{ service.id }}">
+                                    <i class="bi bi-envelope-at-fill text-white"></i> 
+                                </a>
+                            </div>
+                            <div class="col">
+                                
+                                <a href="#" class="btn btn-outline-secondary bg-success" data-bs-toggle="modal" data-bs-target="#whatsappModal{{ service.id }}">
+
+                                    <i class="bi bi-whatsapp text-white"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Email -->
+        <div class="modal fade" id="emailModal{{ service.id }}" tabindex="-1" aria-labelledby="emailModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="emailModalLabel">Envoyer un Email</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" action="{% url 'send_email' site_id=site_id %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="service" value="{{ service.titre }}">
+                            <div class="mb-3">
+                                <label for="nometprenom" class="form-label">Nom et Prénom</label>
+                                <input type="text" class="form-control" id="nometprenom" name="nometprenom" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="contenu" class="form-label">Contenu</label>
+                                <textarea class="form-control" id="contenu" name="contenu" rows="4" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="budget" class="form-label">Budget</label>
+                                <select class="form-select" id="budget" name="budget" required>
+                                    <option value="0-100">$0 - $100</option>
+                                    <option value="100-200">$100 - $200</option>
+                                    <option value="200-500">$200 - $500</option>
+                                    <option value="500-X">$500 et plus</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                <button type="submit" class="btn btn-primary">Envoyer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modal WhatsApp -->
+        <div class="modal fade" id="whatsappModal{{ service.id }}" tabindex="-1" aria-labelledby="whatsappModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="whatsappModalLabel">Envoyer un Message WhatsApp</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" action="{% url 'send_whatsapp' site_id=site_id %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="service" value="{{ service.titre }}">
+                            <div class="mb-3">
+                                <label for="nometprenom_whatsapp" class="form-label">Nom et Prénom</label>
+                                <input type="text" class="form-control" id="nometprenom_whatsapp" name="nometprenom" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="whatsapp" class="form-label">Numéro WhatsApp</label>
+                                <input type="text" class="form-control" id="whatsapp" name="whatsapp" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="contenu_whatsapp" class="form-label">Contenu</label>
+                                <textarea class="form-control" id="contenu_whatsapp" name="contenu" rows="4" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="budget_whatsapp" class="form-label">Budget</label>
+                                <select class="form-select" id="budget_whatsapp" name="budget" required>
+                                    <option value="0-100">$0 - $100</option>
+                                    <option value="100-200">$100 - $200</option>
+                                    <option value="200-500">$200 - $500</option>
+                                    <option value="500-X">$500 et plus</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                <button type="submit" class="btn btn-success">Envoyer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+ 
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-example-divider"></div>

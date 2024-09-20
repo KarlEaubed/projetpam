@@ -1,0 +1,21 @@
+{% load static %}
+  <!-- Heroe Section -->
+  {% for heroe in heroes %}
+  <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary" style="background-image: url('{{ heroe.image.url }}'); background-size: cover; background-position: center;">
+      <div class="col-md-6 p-lg-5 mx-auto my-5">
+          <h1 class="display-3 fw-bold text-white">{{ heroe.titre1 }}</h1>
+          <h1 class="display-3 fw-bold text-white">{{ heroe.titre2 }}</h1>
+
+          <h3 class="fw-normal text-muted mb-3 text-white">{{ heroe.paragraphe }}</h3>
+          <div class="d-flex gap-3 justify-content-center lead fw-normal">
+              <a class="icon-link text-white" href="#"> Download CV <svg class="bi"><use xlink:href="#chevron-right"/></svg></a>
+          </div>
+      </div>
+      <div class="product-device shadow-sm d-none d-md-block"></div>
+      <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+  </div>
+  {% endfor %}
+
+  <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <div class="b-example-divider"></div>
+   <!-- End Heroe -->

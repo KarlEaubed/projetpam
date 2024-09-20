@@ -1,0 +1,64 @@
+{% comment %} Section Contact {% endcomment %}
+{% load static %} 
+
+<div class="container">
+    <h2 class="text-center">Contact</h2>
+    <form action="{% url 'contact_view' site_id=site_id %}" method="POST">
+        {% csrf_token %}
+        <div class="mb-3 row">
+            <label for="nometprenom" class="col-sm-3 col-form-label">Nom et Prénom</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="nometprenom" name="nometprenom" required>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="email" class="col-sm-3 col-form-label">Email</label>
+            <div class="col-sm-6">
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="service" class="col-sm-3 col-form-label">Service</label>
+            <div class="col-sm-6">
+                <select class="form-select" id="service" name="service" required>
+                    <option value="" selected disabled>Choisissez un service</option>
+                    {% for service in services %}
+                    <option value="{{ service.id }}">{{ service.titre }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="demande" class="col-sm-3 col-form-label">Demande</label>
+            <div class="col-sm-6">
+                <textarea class="form-control" id="demande" name="demande" rows="3" required></textarea>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="budget" class="col-sm-3 col-form-label">Budget</label>
+            <div class="col-sm-6">
+                <select class="form-select" id="budget" name="budget">
+                    <option value="">Choisissez un budget (facultatif)</option>
+                    <option value="0-100">0 - 100</option>
+                    <option value="100-200">100 - 200</option>
+                    <option value="200-500">200 - 500</option>
+                    <option value="500-1000">500 - 1000</option>
+                </select>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <div class="col-sm-6 offset-sm-3">
+                <button type="submit" class="btn btn-primary">Envoyer</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+    
+
+
+
+
+    <div class="b-example-divider"></div>

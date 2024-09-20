@@ -1,0 +1,280 @@
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Navbar</title>
+    <!-- Inclure Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Inclure Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        h2{
+            text-align: center;
+        }
+        p{
+            text-align: center;
+        }
+        .navbar-title {
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        
+        /* Styles pour la première navbar */
+        .navbar-custom-1 {
+            background-color: rgba(0, 0, 0, 0.7); /* Fond semi-transparent */
+            padding: 10px 15px;
+            margin-bottom: 20px; /* Espace entre les deux navbars */
+        }
+        .navbar-custom-1 .navbar-brand, 
+        .navbar-custom-1 .nav-link, 
+        .navbar-custom-1 .btn {
+            color: white; /* Couleur des liens et des boutons */
+        }
+        .navbar-custom-1 .nav-link:hover, 
+        .navbar-custom-1 .navbar-brand:hover, 
+        .navbar-custom-1 .btn:hover {
+            color: lightgray; /* Couleur au survol */
+        }
+        .navbar-custom-1 .form-control {
+            background-color: rgba(255, 255, 255, 0.1); /* Fond légèrement transparent */
+            border: 1px solid white; /* Bordure blanche */
+            color: white; /* Texte blanc */
+        }
+        .navbar-custom-1 .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.7); /* Placeholder blanc avec transparence */
+        }
+        .navbar-custom-1 .color-picker {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+        }
+        .btn-login {
+            background-color: #007bff; /* Couleur du bouton Login */
+            border: none;
+            color: white;
+        }
+        .btn-login:hover {
+            background-color: #0056b3; /* Couleur du bouton Login au survol */
+        }
+        .btn-signin {
+            border: 1px solid white; /* Bordure blanche */
+            color: white;
+        }
+        .btn-signin:hover {
+            background-color: white; /* Fond blanc au survol */
+            color: black; /* Texte noir au survol */
+        }
+
+        /* Styles pour la deuxième navbar */
+        .navbar-custom-2 {
+            background-color: #343a40; /* Fond pour la deuxième navbar */
+            padding: 10px 15px;
+            margin-bottom: 20px; /* Espace entre les deux navbars */
+        }
+        .navbar-custom-2 .navbar-brand {
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .navbar-custom-2 .navbar-brand:hover {
+            color: #d4d4d4;
+        }
+        .navbar-custom-2 .navbar-nav .nav-link {
+            color: #ffffff;
+            margin-right: 15px;
+            font-size: 1.1rem;
+        }
+        .navbar-custom-2 .navbar-nav .nav-link:hover {
+            color: #d4d4d4;
+        }
+        .navbar-custom-2 .navbar-nav .nav-item.active .nav-link {
+            color: #d4d4d4;
+            font-weight: bold;
+        }
+        .navbar-custom-2 .navbar-toggler {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        .navbar-custom-2 .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 0.5%29' stroke-width='2' linecap='round' linejoin='round' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+        }
+        .navbar-custom-2 .navbar-nav .nav-link {
+            transition: color 0.3s;
+        }
+        .navbar-custom-2 .btn-login, .navbar-custom-2 .btn-signup {
+            margin-right: 10px;
+        }
+        .navbar-custom-2 .btn-login {
+            color: #ffffff;
+            border-color: #ffffff;
+        }
+        .navbar-custom-2 .btn-login:hover {
+            color: #d4d4d4;
+            border-color: #d4d4d4;
+        }
+        .navbar-custom-2 .btn-signup {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+        .navbar-custom-2 .btn-signup:hover {
+            background-color: #0056b3;
+        }
+        .navbar-custom-2 .color-picker {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+        }
+        /* Sidebar styles */
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            right: 0;
+            background-color: #f5f5f5;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3); /* Ajout de l'ombre */
+        }
+
+        .sidebar a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: #f1f1f1;
+        }
+
+        .sidebar .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        .sidebar h5 {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .sidebar select,
+        .sidebar input[type="range"] {
+            width: 100%;
+            margin: 10px 0;
+            padding: 5px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .sidebar input[type="color"] {
+            height: 50px; /* Augmentez la hauteur du color picker */
+            border: none; /* Enlever la bordure par défaut */
+            padding: 0; /* Enlever le padding par défaut */
+        }
+
+        /* Open Sidebar Button */
+        .openSidebar {
+            position: fixed;
+            top: 50%;
+            right: 0;
+            font-size: 30px;
+            cursor: pointer;
+            background-color: #111;
+            color: white;
+            padding: 10px;
+            z-index: 2;
+            transition: 0.3s;
+        }
+
+        .openSidebar:hover {
+            background-color: #575757;
+        }
+
+
+        /* Responsivité pour la deuxième navbar */
+        @media (max-width: 992px) {
+            .navbar-custom-2 .navbar-nav {
+                flex-direction: column;
+                width: 100%;
+            }
+            .navbar-custom-2 .navbar-nav .nav-item {
+                margin: 0;
+                text-align: center;
+            }
+            .navbar-custom-2 .navbar-nav .btn-login, .navbar-custom-2 .navbar-nav .btn-signup {
+                width: 70%;
+                margin: 5px auto;
+            }
+        }
+
+        /* Responsivité pour la premiere navbar */
+        @media (max-width: 992px) {
+            .navbar-custom-1 .navbar-nav {
+                flex-direction: column;
+                width: 100%;
+            }
+            .navbar-custom-1 .navbar-nav .nav-item {
+                margin: 0;
+                text-align: center;
+            }
+            .navbar-custom-1 .navbar-nav .btn-login, .navbar-custom-2 .navbar-nav .btn-signup  {
+                width: 70%;
+                margin: 5px auto;
+            }
+            .navbar-custom-1 .navbar-brand{
+                text-align: center;
+                position: absolute;
+                top: 10px;
+            
+            }
+        }
+
+        /* Espace en haut pour éviter que le contenu ne soit caché sous les navbars */
+        .content {
+            padding-top: 200px; /* Espace pour éviter le chevauchement */
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+
+<!-- Scripts Bootstrap et dépendances -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Récupérer le contenu de la navbar depuis sessionStorage
+        var navbarContent = sessionStorage.getItem('selectedNavbar');
+        
+        // Vérifier si le contenu existe et l'insérer dans le body
+        if (navbarContent) {
+            document.body.innerHTML += navbarContent;
+        } else {
+            console.log("Aucune navbar sélectionnée.");
+        }
+    });
+</script>
+
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% block content %}
+{% load static %}
+
+{% include 'headerporto.html' with site_id=site_id domaine=domaine %}
+<div class="container p-5">
+    <h5 class="pb-4">Ajouter une carrière</h5>
+    <div class="card mx-3 mt-n5 shadow-lg" style="border-radius: 10px; border-left:8px #007bff solid; border-right: none; border-top:none; border-bottom:none">
+        <div class="card-body">
+            <h4 class="card-title mb-3 text-primary text-uppercase">Ajouter une carrière</h4>
+            <form action="{% url 'add_carriere' domaine=domaine site_id=site_id %}" method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="poste" placeholder="Poste" name="poste" required>
+                            <label for="poste">Poste</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="compagnie" placeholder="Compagnie" name="compagnie" required>
+                            <label for="compagnie">Compagnie</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-floating mb-3">
+                    <textarea class="form-control" placeholder="Description" id="description" name="description" style="height: 100px;"></textarea>
+                    <label for="description">Description</label>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input type="date" class="form-control" id="debut" name="debut" required>
+                            <label for="debut">Date de début</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input type="date" class="form-control" id="fin" name="fin" required>
+                            <label for="fin">Date de fin</label>
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" class="btn btn-primary" value="Ajouter">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

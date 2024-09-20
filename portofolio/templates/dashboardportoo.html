@@ -1,0 +1,94 @@
+{% block content %}
+{% load static %}
+
+{% include 'headerporto.html' with site_id=site_id domaine=domaine %}
+
+
+
+<div class="container">
+    <span class="text">{{ portofolio.title }} Dashboard</span>
+
+<a href="{% url 'view_site_portofolio' domaine=sitewebpam.domaine %}" class="text1"><span >View your Website</span></a>
+
+
+
+<div class="container">
+    <div class="row">
+        <!-- Card pour le nombre de services -->
+        <div class="col-md-4">
+            <div class="card bg-primary">
+                <div class="card-body">
+                    <h5 class="card-title text-white">Nombre de Services</h5>
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <p class="card-text text-white">{{ nombre_services }}</p>
+                        </div>
+                        <div class="col">
+                            <a href="{% url 'add_service' domaine=domaine site_id=site_id %}" class="btn btn-light">Add</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- Card pour le nombre de compétences -->
+        <div class="col-md-4">
+            <div class="card bg-success">
+                <div class="card-body">
+                    <h5 class="card-title text-white">Nombre de Compétences</h5>
+                    
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <p class="card-text text-white">{{ nombre_skills }}</p>
+                        </div>
+                        <div class="col">
+                            <a href="{% url 'add_skill' domaine=domaine site_id=site_id %}" class="btn btn-light">Add</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card pour le nombre de projets -->
+        <div class="col-md-4">
+            <div class="card bg-danger">
+                <div class="card-body">
+                    <h5 class="card-title text-white">Nombre de Projets</h5>
+                    
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <p class="card-text text-white">{{ nombre_projets }}</p>
+                        </div>
+                        <div class="col">
+                            <a href="{% url 'add_pro' domaine=domaine site_id=site_id %}" class="btn btn-light">Add</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<h1>Portofolio Dashboard</h1>
+<h2>Domaine: {{ domaine }}</h2>
+<h3>Détails du Portofolio:</h3>
+<p>Title: </p>
+<p>Couleur: {{ portofolio.couleur }}</p>
+<p>Logo: <img src="{{ portofolio.logo.url }}" alt="Logo"></p>
+</div>
+
+
+
+
+
+
+         
+
+
+
+{% endblock %}

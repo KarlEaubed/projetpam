@@ -1,0 +1,15 @@
+{% load static %}
+    <div class="p-1 m-5 border-0 bd-example m-0 border-0">
+        {% for skill in skills %}
+        <h3>Skills</h3>
+        <hr>
+        <h5>{{ skill.nom }}</h5>
+        <div class="progress" role="progressbar" aria-label="{{ skill.nom }}" aria-valuenow="{{ skill.pourcentage }}" aria-valuemin="0" aria-valuemax="100">
+
+            <div class="progress-bar bg-danger" style="width: {{ skill.pourcentage }}%">{{ skill.pourcentage }}%</div>
+        </div>
+        {% endfor %}
+
+    </div>
+
+ 

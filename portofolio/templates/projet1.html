@@ -1,0 +1,23 @@
+{% load static %}
+  <!-- Section Project -->
+  <div class="container px-4 py-5" id="hanging-icons">
+    <h2 class="pb-2 border-bottom">Projet</h2>
+    
+  
+    <div class="owl-carousel owl-theme">
+        {% for pro in pro %}
+        <div class="item">
+            <a href="{{ pro.image.url }}" data-toggle="lightbox" data-gallery="gallery1" data-title="{{ pro.titre }}">
+                <img src="{{ pro.image.url }}" class="img-fluid mb-3" alt="{{ pro.titre }}">
+            </a>
+            <h1>{{ pro.titre }}</h1>
+            <p>{{ pro.description }}</p>
+        </div>
+        {% endfor %}
+    </div>
+  
+  </div>
+  </div>
+  
+  <div class="b-example-divider"></div>
+  

@@ -1,0 +1,75 @@
+{% block content %}
+{% load static %}
+
+{% include 'headerporto.html' with site_id=site_id domaine=domaine %}
+
+
+
+<div class="container p-5">
+    <h5 class="pb-4">Ajouter Vos Projet</h5>
+    <div class="card mx-3 mt-n5 shadow-lg" style="border-radius: 10px; border-left:8px #007bff solid; border-right: none; border-top:none; border-bottom:none">
+     <div class="card-body">
+       <h4 class="card-title mb-3 text-primary text-uppercase">Projets</h4>
+       
+       
+    <form action="{% url 'add_pro' domaine=domaine site_id=site_id %}" method="post" enctype="multipart/form-data">
+
+        {% csrf_token %}
+         <div class="row">
+           <div class="col">
+             <div class="form-floating mb-3">
+               <input type="text" class="form-control" id="titre" placeholder="Ex: Web Design " name="titre" required>
+               <label for="titre">Nom du Projet</label>
+             </div>
+           </div>
+
+         </div>
+         <div class="form-floating mb-3">
+           <input type="file" class="form-control" id="image" name="image" >
+           <label for="image">Image</label>
+         </div>
+         <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="descriptions" placeholder="descriptions" name= "descriptions" required>
+            <label for="descriptions">Descriptions</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="date" class="form-control" id="created_at"  name="created_at">
+            <label for="created_at">Date</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="links"  name="links">
+            <label for="links">Lien</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="categorie"  name="categorie">
+            <label for="categorie">Categorie</label>
+          </div>
+
+        
+         <input type="submit"  class="btn btn-primary" value="Ajouter">
+    </form>
+     </div>
+   </div>
+ </div>
+
+
+<div class="card-group">
+    {% for pro in pros %}
+    <div class="card">
+        <img class="card-img-top" src="{{ pro.image.url }}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{ pro.titre }}</h5>
+            <p class="card-text">{{ pro.descriptions }}</p>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+        <!-- Bouton pour la modification du service -->
+        {% comment %} <form method="GET" action="{% url 'modif_pro' pro.id %}">
+            <button type="submit" class="btn btn-primary">Modifier</button>
+        </form> {% endcomment %}
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

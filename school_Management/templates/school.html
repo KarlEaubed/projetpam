@@ -1,0 +1,88 @@
+{% block content %}
+{% load static %}
+
+{% include 'sidebar_school.html' with site_id=site_id domaine=domaine %}
+
+
+
+<div class="container">
+    <span class="text"> Dashboard</span>
+
+<a href="" class="text1"><span >View your Website</span></a>
+
+
+
+<div class="container">
+    <div class="row">
+        <!-- Card pour le nombre de services -->
+        <div class="col-md-4">
+            <div class="card bg-primary">
+                <div class="card-body">
+                    <h5 class="card-title text-white">Enseignants</h5>
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <p class="card-text text-white"></p>
+                        </div>
+                        <div class="col">
+                            <a href="{% url 'create_enseignant' domaine=domaine site_id=site_id %}" class="btn btn-light">Add</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- Card pour le nombre de compétences -->
+        <div class="col-md-4">
+            <div class="card bg-success">
+                <div class="card-body">
+                    <h5 class="card-title text-white">Examen</h5>
+                    
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <p class="card-text text-white"></p>
+                        </div>
+                        <div class="col">
+                            <a href="{% url 'create_examen_logic' domaine=domaine site_id=site_id %}" class="btn btn-light">Add</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card pour le nombre de projets -->
+        <div class="col-md-4">
+            <div class="card bg-danger">
+                <div class="card-body">
+                    <h5 class="card-title text-white">Nombre de Projets</h5>
+                    
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <p class="card-text text-white"></p>
+                        </div>
+                        <div class="col">
+                            <a href="" class="btn btn-light">Add</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+         
+
+
+
+{% endblock %}

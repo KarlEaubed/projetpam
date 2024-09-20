@@ -1,0 +1,25 @@
+{% block content %}
+{% load static %}
+
+{% include 'headerporto.html' with site_id=site_id domaine=domaine %}
+
+<div class="container px-4 py-5" id="hanging-icons">
+    <h2 class="pb-2 border-bottom">Service</h2>
+    
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for service in services %}
+            <div class="col">
+                <div class="card">
+                    <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.titre }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ service.titre }}</h5>
+                        <p class="card-text">{{ service.descriptions }}</p>
+                        <a href="{% url 'modif_service' service.id %}" class="btn btn-primary">Modifier</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

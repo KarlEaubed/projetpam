@@ -1,0 +1,202 @@
+{% block content %}
+{% load static %}
+
+{% include 'headerporto.html' with site_id=site_id %}
+
+
+
+<div class="container">
+    <h2 class="text-center">Personnalisation du Design</h2>
+    <form action="{% url 'design_site' domaine=domaine site_id=site_id %}" method="POST">
+        {% csrf_token %}
+        <div class="mb-3 row">
+            <label for="navbar_choice" class="col-sm-3 col-form-label">Navbar</label>
+            <div class="col-sm-6">
+                <select class="form-select" id="navbar_choice" name="navbar_choice" required>
+                    
+                    <option value="navbar1.html" data-img-url="{% static 'images/navbar1.png' %}" {% if design.navbar_choice == 'navbar1.html' %}selected{% endif %}>Navbar 1</option>
+                    <option value="navbar2.html" data-img-url="{% static 'images/navbar1.png' %}" {% if design.navbar_choice == 'navbar2.html' %}selected{% endif %}>Navbar 2</option>
+                    <option value="navbar3.html" data-img-url="{% static 'images/navbar1.png' %}" {% if design.navbar_choice == 'navbar3.html' %}selected{% endif %}>Navbar 3</option>
+                    <option value="navbar4.html" data-img-url="{% static 'images/navbar1.png' %}" {% if design.navbar_choice == 'navbar4.html' %}selected{% endif %}>Navbar 4</option>
+                    <option value="navbar5.html" data-img-url="{% static 'images/navbar1.png' %}" {% if design.navbar_choice == 'navbar5.html' %}selected{% endif %}>Navbar 5</option>
+
+                </select>
+            </div>
+            <div class="col-sm-3">
+                <img id="navbar_preview" src="" alt="Navbar Preview" class="img-fluid" style="display:none;">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="header_choice" class="col-sm-3 col-form-label">Header</label>
+            <div class="col-sm-6">
+                <select class="form-select" id="header_choice" name="header_choice" required>
+                    <option value="header1.html" data-img-url="{% static 'images/navbar1.png' %}" {% if design.header_choice == 'header1.html' %}selected{% endif %}>Header 1</option>
+                    <option value="header2.html" data-img-url="{% static 'images/navbar1.png' %}" {% if design.header_choice == 'header2.html' %}selected{% endif %}>Header 2</option>
+                    <option value="header3.html" data-img-url="{% static 'images/navbar1.png' %}" {% if design.header_choice == 'header3.html' %}selected{% endif %}>Header 3</option>
+                </select>
+            </div>
+            <div class="col-sm-3">
+                <img id="navbar_preview" src="" alt="Navbar Preview" class="img-fluid" style="display:none;">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="about_choice" class="col-sm-3 col-form-label">About</label>
+            <div class="col-sm-6">
+                <select class="form-select" id="about_choice" name="about_choice" required>
+                    <option value="about1.html" data-img-url="{% static 'images/navbar1.png' %}" {% if design.about_choice == 'about1.html' %}selected{% endif %}>About 1</option>
+                    <option value="about2.html" data-img-url="{% static 'images/navbar1.png' %}" {% if design.about_choice == 'about2.html' %}selected{% endif %}>About 2</option>
+                    <option value="about3.html" data-img-url="{% static 'images/navbar1.png' %}" {% if design.about_choice == 'about3.html' %}selected{% endif %}>About 3</option>
+                </select>
+            </div>
+            <div class="col-sm-3">
+                <img id="navbar_preview" src="" alt="Navbar Preview" class="img-fluid" style="display:none;">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="service_choice" class="col-sm-3 col-form-label">Service</label>
+            <div class="col-sm-6">
+                <select class="form-select" id="service_choice" name="service_choice" required>
+                    <option value="service1.html" data-img-url="{% static 'images/navbar1.png' %}" {% if design.service_choice == 'service1.html' %}selected{% endif %}>Service 1</option>
+                    <option value="service2.html" data-img-url="{% static 'images/navbar1.png' %}" {% if design.service_choice == 'service2.html' %}selected{% endif %}>Service 2</option>
+                    <option value="service3.html" data-img-url="{% static 'images/navbar1.png' %}" {% if design.service_choice == 'service3.html' %}selected{% endif %}>Service 3</option>
+                </select>
+            </div>
+            <div class="col-sm-3">
+                <img id="navbar_preview" src="" alt="Navbar Preview" class="img-fluid" style="display:none;">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="skill_choice" class="col-sm-3 col-form-label">Skill</label>
+            <div class="col-sm-6">
+                <select class="form-select" id="skill_choice" name="skill_choice" required>
+                    <option value="skill1.html" data-img-url="{% static 'images/navbar2.png' %}" {% if design.skill_choice == 'skill1.html' %}selected{% endif %}>Skill 1</option>
+                    <option value="skill2.html" data-img-url="{% static 'images/navbar1.png' %}" {% if design.skill_choice == 'skill2.html' %}selected{% endif %}>Skill 2</option>
+                    <option value="skill3.html" data-img-url="{% static 'images/navbar1.png' %}" {% if design.skill_choice == 'skill3.html' %}selected{% endif %}>Skill 3</option>
+                </select>
+            </div>
+            <div class="col-sm-3">
+                <img id="navbar_preview" src="" alt="Navbar Preview" class="img-fluid" style="display:none;">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="experience_choice" class="col-sm-3 col-form-label">Experience</label>
+            <div class="col-sm-6">
+                <select class="form-select" id="experience_choice" name="experience_choice" required>
+                    <option value="experience1.html" data-img-url="{% static 'images/navbar1.png' %}" {% if design.experience_choice == 'experience1.html' %}selected{% endif %}>Experience 1</option>
+                    <option value="experience2.html" data-img-url="{% static 'images/navbar1.png' %}" {% if design.experience_choice == 'experience2.html' %}selected{% endif %}>Experience 2</option>
+                    <option value="experience3.html" data-img-url="{% static 'images/navbar1.png' %}" {% if design.experience_choice == 'experience3.html' %}selected{% endif %}>Experience 3</option>
+                </select>
+            </div>
+            <div class="col-sm-3">
+                <img id="navbar_preview" src="" alt="Navbar Preview" class="img-fluid" style="display:none;">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="projet_choice" class="col-sm-3 col-form-label">Projet</label>
+            <div class="col-sm-6">
+                <select class="form-select" id="projet_choice" name="projet_choice" required>
+                    <option value="projet1.html" data-img-url="{% static 'images/navbar1.png' %}" {% if design.projet_choice == 'projet1.html' %}selected{% endif %}>Projet 1</option>
+                    <option value="projet2.html" data-img-url="{% static 'images/navbar1.png' %}" {% if design.projet_choice == 'projet2.html' %}selected{% endif %}>Projet 2</option>
+                    <option value="projet3.html" data-img-url="{% static 'images/navbar1.png' %}" {% if design.projet_choice == 'projet3.html' %}selected{% endif %}>Projet 3</option>
+                </select>
+            </div>
+            <div class="col-sm-3">
+                <img id="navbar_preview" src="" alt="Navbar Preview" class="img-fluid" style="display:none;">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="contact_choice" class="col-sm-3 col-form-label">Contact</label>
+            <div class="col-sm-6">
+                <select class="form-select" id="contact_choice" name="contact_choice" required>
+                    <option value="contact1.html" data-img-url="{% static 'images/navbar1.png' %}" {% if design.contact_choice == 'contact1.html' %}selected{% endif %}>Contact 1</option>
+                    <option value="contact2.html" data-img-url="{% static 'images/navbar1.png' %}" {% if design.contact_choice == 'contact2.html' %}selected{% endif %}>Contact 2</option>
+                    <option value="contact3.html" data-img-url="{% static 'images/navbar1.png' %}" {% if design.contact_choice == 'contact3.html' %}selected{% endif %}>Contact 3</option>
+                </select>
+            </div>
+            <div class="col-sm-3">
+                <img id="navbar_preview" src="" alt="Navbar Preview" class="img-fluid" style="display:none;">
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="footer_choice" class="col-sm-3 col-form-label">Footer</label>
+            <div class="col-sm-6">
+                <select class="form-select" id="footer_choice" name="footer_choice" required>
+                    <option value="footer1.html" data-img-url="{% static 'images/navbar1.png' %}" {% if design.footer_choice == 'footer1.html' %}selected{% endif %}>Footer 1</option>
+                    <option value="footer2.html" data-img-url="{% static 'images/navbar1.png' %}" {% if design.footer_choice == 'footer2.html' %}selected{% endif %}>Footer 2</option>
+                    <option value="footer3.html" data-img-url="{% static 'images/navbar1.png' %}" {% if design.footer_choice == 'footer3.html' %}selected{% endif %}>Footer 3</option>
+                </select>
+            </div>
+            <div class="col-sm-3">
+                <img id="navbar_preview" src="" alt="Navbar Preview" class="img-fluid" style="display:none;">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <div class="col-sm-6 offset-sm-3">
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">Image en Plein Écran</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img id="modalImage" src="" alt="Image en Plein Écran" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        function updateImagePreview(selectElement, imgElement) {
+            const selectedOption = selectElement.options[selectElement.selectedIndex];
+            const imgURL = selectedOption.getAttribute('data-img-url');
+            if (imgURL) {
+                imgElement.src = imgURL;
+                imgElement.style.display = 'block';
+            } else {
+                imgElement.style.display = 'none';
+            }
+        }
+    
+        const navbarChoice = document.getElementById('navbar_choice');
+        const navbarPreview = document.getElementById('navbar_preview');
+        const modalImage = document.getElementById('modalImage');
+        const imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
+    
+        // Initial update
+        updateImagePreview(navbarChoice, navbarPreview);
+    
+        navbarChoice.addEventListener('change', function() {
+            updateImagePreview(navbarChoice, navbarPreview);
+        });
+    
+        navbarChoice.addEventListener('mousemove', function(event) {
+            const option = document.elementFromPoint(event.clientX, event.clientY);
+            if (option && option.tagName === 'OPTION') {
+                const imgURL = option.getAttribute('data-img-url');
+                if (imgURL) {
+                    navbarPreview.src = imgURL;
+                    navbarPreview.style.display = 'block';
+                } else {
+                    navbarPreview.style.display = 'none';
+                }
+            }
+        });
+    
+        navbarPreview.addEventListener('click', function() {
+            modalImage.src = navbarPreview.src;
+            imageModal.show();
+        });
+    });
+    </script>
+{% endblock %}

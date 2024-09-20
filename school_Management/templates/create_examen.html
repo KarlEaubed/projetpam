@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Créer Examen</title>
+</head>
+<body>
+    <h1>Créer Examen</h1>
+    <form action="{% url 'create_examen_logic' domaine=domaine site_id=site_id %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="code_examen">Code Examen:</label>
+        <input type="text" id="code_examen" name="code_examen" required><br><br>
+
+        <label for="nom">Nom:</label>
+        <input type="text" id="nom" name="nom" required><br><br>
+
+        <label for="classe">Classe:</label>
+        <select id="classe" name="classe" required>
+            {% for classe in classes %}
+                <option value="{{ classe.id }}">{{ classe.nom }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required><br><br>
+
+        <label for="coefficient">Coefficient:</label>
+        <input type="number" id="coefficient" name="coefficient" required><br><br>
+
+        <label for="cours">Cours:</label>
+        <select id="cours" name="cours" required>
+            {% for cours in cours %}
+                <option value="{{ cours.id }}">{{ cours.nom }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <button type="submit">Créer Examen</button>
+    </form>
+</body>
+</html>
