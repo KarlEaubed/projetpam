@@ -273,6 +273,7 @@ background: linear-gradient(to bottom, #3a6073, #3a7bd5); /* Change the colors f
 .pricing-table .grid .box.standard {
 transform: scale(1.1);
 background: linear-gradient(to bottom, #3a7bd5, #3a6073);
+color: #000;
 }
 
 .pricing-table .grid .box.standard .button button:hover {
@@ -285,6 +286,10 @@ color: #eee;
 
 .pricing-table .grid .box.standard .price {
 color: #fff;
+}
+
+.pricing-table .grid .box.standard .button a{
+    color: #000;
 }
 
 .pricing-table .grid .box.standard .features > * {

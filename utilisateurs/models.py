@@ -3,7 +3,6 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 from django.db import models
 from django.utils import timezone
 
-
 class CustomUserManager(BaseUserManager):
     def _create_user(self, email, password=None, **extra_fields):
         if not email:
@@ -16,14 +15,18 @@ class CustomUserManager(BaseUserManager):
 
     def create_user(self, email, password=None, **extra_fields):
         extra_fields.setdefault('is_superuser', False)
+        extra_fields.setdefault('is_staff', False)  # Ensure is_staff is set to False for normal users
         return self._create_user(email, password, **extra_fields)
 
     def create_superuser(self, email, password=None, **extra_fields):
         extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('is_staff', True)  # Ensure is_staff is True for superusers
         extra_fields.setdefault('is_active', True)
 
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('Superuser must have is_superuser=True.')
+        if extra_fields.get('is_staff') is not True:
+            raise ValueError('Superuser must have is_staff=True.')
         if extra_fields.get('is_active') is not True:
             raise ValueError('Superuser must have is_active=True.')
 
@@ -39,6 +42,7 @@ class User_Main(AbstractBaseUser, PermissionsMixin):
     date_de_nais = models.DateField(blank=False, null=False)
     grade = models.CharField(max_length=5)
     is_active = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)  # Add this field for admin access
     is_superuser = models.BooleanField(default=False)
     date_joined = models.DateTimeField(default=timezone.now)
     created_by = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True, related_name='created_users')
@@ -50,6 +54,10 @@ class User_Main(AbstractBaseUser, PermissionsMixin):
 
     def get_full_name(self):
         return f"{self.prenom} {self.nom}"
+
+    def __str__(self):
+        return self.email
+
 
 
 
