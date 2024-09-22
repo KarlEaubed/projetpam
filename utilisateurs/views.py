@@ -109,39 +109,39 @@ def signup(request):
             portable=phone,
             date_de_nais=date_of_birth,
             grade="1",
-            is_active = False,
+            is_active = True,
         )
         user.save()
         setup_account(request)
 
-        messages.add_message(request,messages.SUCCESS, 'Your account has been successfully created. we have sent you an email You must comfirm in order to activate your account.')
+        # messages.add_message(request,messages.SUCCESS, 'Your account has been successfully created. we have sent you an email You must comfirm in order to activate your account.')
         
-        subject = "Welcome to .WebPam official Website"
-        message = "Welcome "+ user.prenom + " " + user.nom + "\n thank for chosing our website to make your own businnes.\n In order to login you need to comfirm your email account.\n thanks\n\n\n .WebPam"
+        # subject = "Welcome to .WebPam official Website"
+        # message = "Welcome "+ user.prenom + " " + user.nom + "\n thank for chosing our website to make your own businnes.\n In order to login you need to comfirm your email account.\n thanks\n\n\n .WebPam"
         
-        from_email = settings.EMAIL_HOST_USER
-        to_list = [user.email]
-        send_mail(subject, message, from_email, to_list, fail_silently=False)
+        # from_email = settings.EMAIL_HOST_USER
+        # to_list = [user.email]
+        # send_mail(subject, message, from_email, to_list, fail_silently=False)
         
-        current_site = get_current_site(request) 
-        email_suject = "confirm your email .WebPam!"
-        messageConfirm = render_to_string("emailConfimation.html", {
-            'name': user.prenom,
-            'domain':current_site.domain,
-            'uid':urlsafe_base64_encode(force_bytes(user.pk)),
-            'token': generateToken.make_token(user)
-        })       
+        # current_site = get_current_site(request) 
+        # email_suject = "confirm your email .WebPam!"
+        # messageConfirm = render_to_string("emailConfimation.html", {
+        #     'name': user.prenom,
+        #     'domain':current_site.domain,
+        #     'uid':urlsafe_base64_encode(force_bytes(user.pk)),
+        #     'token': generateToken.make_token(user)
+        # })       
 
-        email = EmailMessage(
-            email_suject,
-            messageConfirm,
-            settings.EMAIL_HOST_USER,
-            [user.email]
-        )
+        # email = EmailMessage(
+        #     email_suject,
+        #     messageConfirm,
+        #     settings.EMAIL_HOST_USER,
+        #     [user.email]
+        # )
 
-        email.fail_silently = False
-        email.send()
-        return render(request, 'signin.html', {'messages': messages.get_messages(request)})
+        # email.fail_silently = False
+        # email.send()
+        # return render(request, 'signin.html', {'messages': messages.get_messages(request)})
 
     return render(request, 'signup.html')
 
